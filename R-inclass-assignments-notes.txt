@@ -1,0 +1,67 @@
+My inclass R-stuff will be here
+
+in R, need to set working directory
+remember to put the directory in "" and to reverse the slashes from windows' \ to /, also include C: infront if want to go all the the way from Users
+
+help files found with help() or ? in front of function
+required things for the command do not have an equals sign (mostly), optional stuff has equal sign, these arguements already have default values ready
+at very bottom of help file gives examples, can copy paste, go through line by line and execulte, see output, refer to description of arguements
+assign variables with <- operator, but = also work, but commonly use <-, can also go 22->yy
+
+c() function is concatenate (spelling?) 
+str tells about structure of object
+cat is concatenate and print
+ls() to see hat varibales are
+if want to remove variable from workspace rm() variable, removes it
+rm(list=ls()) list is inner comand to remove everything, this puts all of ls() into rm so everything in environ is deleted, often good to start scripts that way so no variables preassigned
+in R can write functions and if useful again later don't need to write again or copy paste, can assign a path with source() command to link to R script and then can use that function in new doc, the doc in the source can have more than one function if you want to add more than one function at a time
+library() loads data into R? for ape got error message of which version of R made, for R studion can click under packages in lower right check box list
+comand read.tree to read tree
+can check attributes with attributes() cmmoand
+$ is accessor operator, look at part of complex object
+put it like this object$stuffinit[subset of it]
+tree is pretty big, want to plot a subset to take less time, it is in the example
+exercise is to work through other lines in reading in data and subsetting to see if can understand what's going on
+
+Intro to control statements!
+common control statement is for loops, tells it to perform action over some range
+looks like for (variable in range ex ii in 1:5) { (ie do the following)
+	cat("\nthe number is ", ii)
+}
+
+\n means make a new line
+
+while (some condition is true) {do somehting}
+while loops keeps running until conditioanl part o the expression fails, At this point the loop is terminated
+for while loops can be endless, if comp unresponsive check while loop, while will do things untill region not in {} not true or hit manual break statement
+
+R not look at semicolons/works as line break/separtator?
+
+if statementats allow condition to diverge depending on conditions, set up comparison if condiotn is met do one thing
+IF (xx=='a') doSomething1
+
+
+note that the == is used to differentiate between xx=a (which assigns values) vs == which asks to check if what is on either side is the same
+== is boolean comparison
+
+if and else 
+Note:%% (aka percentage sign) is modulo, I guess it means divide and show remainder
+else to do other thing when when if is not met
+
+else if with if and else when you have multiple conditions if any of these things are true, and then a final else statement if all the rest are not true
+
+pseudocode is infromal way to plan out the structure and flow of program, describe it with words, don't pay attention to syntax of it, then programing is to take what you've got and program it
+functions perform tasks, are reusable, take 1+ arguements, do things to them, return something
+
+R names function with assigner what you want it to be (input) {
+}
+
+doubler <- function(num){
+  doubled = 2 * num
+  cat("witness the awesome power of the doubler\n")
+  cat("I changed ", num, " to ", doubled, "\n")
+  cat("you're welcome!\n")
+  return(doubled)
+}
+functions don't need to return anything
+create function by giving name, create keyword with arguements to take
