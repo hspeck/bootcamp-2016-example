@@ -52,4 +52,7 @@ for(ii in 1:6){
     cat(ii, " is even\n")
   }
 }
-#not printing something else
+#not printing, something else needed
+
+help(rnorm)
+

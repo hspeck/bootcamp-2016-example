@@ -1,0 +1,53 @@
+R is usefulf for many things but quirky at times, going to go over some of those quirks
+
+how to make simple plots scatterplot, histogram, density plot, bar plot
+tommorow we'll focus on "large" datasets (plus stuff you might do in excell)
+start to talk about simulation (important for 200A,), calculate some stats in R
+
+R has lots of distribution stuff built into it
+rnorm(howmany values drawn, mean =, standard deviation=what)
+
+pdf() opens pdf file take stuff plotted and put into file, if not do this step it'll just pop up on screen
+pdf(file="filename", width=inches dimension, height=dimension)
+for hist, col is color, 2 is read, xlab is label, by default will label y frequency, main gives stuff on top
+par sets parameters of pdf file, mfrow=c(2,1) says 2 rows and 1 column, mar refers to margins of plot, when saving in pdf sometimes mess it up, mar then 4 dif sides of plot sep by commas, look in help file, bottom, left, top, right, increase numbers to increase margin, play with it to make it work, fiddle with it, trial and error
+dev.off() this shuts off current output file (aka the pdf, if keep calling hist or plot will keep sending it to the pdf, makes a new page? so need to close the file/output stream)
+putting greek letters into the figure is difficult, use series of functions called expression and paste,
+expression has a lot of built in mathematical things, if type "sigma" it will interpret it as the letter, but to combine with the 1, paste helps out
+
+smooth density plot and all on the same thing 
+plot(x values, y values), but for the densisty plot puting it in other function density() smooths the data, nesting density in plot makes the plot, if plot alone, it will use the number of the data point as x values
+plot xlim will say plot from where to where, for the first plotting it will default to what the first dataset works with, not knowing that you'll want a much bigger one later
+lines(what, color, lwd is line weight)
+to get both on the same plot together, shouldn't call plot agian, that'll redo the doc, instead use lines function, and the version for points is points()
+legend adds a legend ontop of the plot, the numbers in in legend() are the coordinates where to go on the graph, eyeballing it will work generally the best, to move the legend have to make from scratch
+next in legend is vector witht he text to label, if two lines, two things in vector, for colors give vector with which color is which, a1 in label goes with b1 in color vector, cex controls how big it is, based on relative size compared to standard of 1
+put in vertical lines with function abline(), adds a vertical or horizontal line
+abline(v or h= for vert or horizontal where to go, attributes of line) we'll get cooords with function quantile, lty determines what type of line it'll be lty is dashed, can be dotted etc
+
+quantile takes vector of stuff, returns the value q such that p% of your distribution is less than q,
+ex quantile(s1,0.75)
+if not specify the percentile it will give you quartiles
+
+boxplots doable
+cbind takes two vectors of equal lenght and pairs together a1 and b1, bound together as columns-c for column
+can do same for rows with rbind
+names is what label diff boxes as, 1st thing go with first thing in cbind vector, etc, main is title, 
+
+histograms with same axes-
+when go hist() r decide where to make bins, but can tell R where to make breaks
+hist does lots of stuff under hood, like counts etc, can call up where the breaks are with $breaks, gives vector of where breaks are,
+can do same with $counts to get vector of breaks
+we must set it so that breaks are same for both datasets
+make vector from range and specify size of bins
+
+for barplot rbind them, beside=T means plot thembeside each other, names.arg is values printed on x azis
+data is simulated so may not fit exactly with the other code/example
+
+mean function is helpful, gives a mean if get a vector
+with mean can find what percent of values are less/greater than a value in a distribution
+if just do s1<0 it will give an output of true false for all the values, if do sum(s1>value) will give you the count of how many values meet this requirement
+for less than -values, make sure to put extra set of parantheses around the value being compared
+
+for graphs with labels that are very small can fix it , cex in the plot changes the size, can do cex.lab and cex.axis to focus changes on those specific labels
+pch inthe plot function changes the symbols used, pch=19 is filled circles instead of default open circles
