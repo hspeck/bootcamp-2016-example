@@ -21,10 +21,22 @@ windows()
 plot(chkwtdy0$Diet, chkwtdy0$weight, xlab="Diet", ylab="Weight")
 #gives a barplot, based on this it seems like there is little difference between all of them
 #to test we will run an anova, we want to examine weight by diet
+chkwtdy0<-ChickWeight[ChickWeight$Time==0,]
+chkwtdy0
+data0<-chkwtdy0
 chkwtdy0aov<-aov(chkwtdy0$Diet ~ chkwtdy0$weight)
 class(chkwtdy0$Diet)
 help(aov)
 
+data0<-chkwtdy0aov
+data0<-within(data0, {
+  Chick<-factor(Chick)
+  Diet<-factor(Diet)
+})
+summary(aov(weight~Diet, data=data0))
+#P value 0.346, not significant
+
+#2 for the next example do the same thing for day21
 
 #3 
 data<-ChickWeight
@@ -33,5 +45,5 @@ data<-within(data, {
   Diet<-factor(Diet)
   Time<-(Time)
 })
-aov()
-})
+summary(aov(weight~Diet*Time+Error(Chick), data=data))
+
