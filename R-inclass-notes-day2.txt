@@ -1,0 +1,86 @@
+R has basic data types as vector
+as vector can multiply everything in vector by a scalar, as with normal vectors
+can store sequence as a vector, use seq function, versatile can set interval and endpoints
+can use rep(5,10) repeats 5 ten times
+rep useful for stuff
+sample function takes vector x and take a sample of some size, can be with or without replacement
+defaults to without replacement, if want replace can go replace=TRUE
+can also specify subset of x with x[blah:blah] which will limit it to the range between the nth numbers of the vector where n=blah
+for seq when in doubt helps to specify by=, may not always be needed but good
+[] allows accessing subsets of the vector, specify what position in the vector it is, if want a sequence of it can use :, if want specific values in it can specify with a vector nested in the [c(,)]
+can also do x[-2] and that delivers the vector minus the second number in the vector
+matrices work like vectors in two dimensions
+matrix is function, (vector of elements, nrow=, ncol=)
+can pull out rows/columns as vectors, or particular cell
+use[,] if leave area around comma as blank will eg everything in that column or row of the place not left blank, aka blank means it varies
+when filling matrix, default is byrow=False, if set it true will fill by row, otherwise fill by column
+t() transposes the matrix, %*% is matrix multiplication operator
+
+dataframes similiar to matrix, think about them like matrix plus a few R specific properties
+R and missing values, use "NA" to indicate that there are misssing values, won't take the means
+but can take mean with mean(x, na.rm=TRUE) telling it to ignore NAs (ie ignores in summing them but also only considers there to be 3 values, as one is not included)
+apply function lets you treat each row/column of matrix without making it a for loop
+
+hard way mean
+loop make z a vector repeating(_,chosen number of times) basically initializing z
+make for loop to go through each value of matrix when i equals row and then we assign it to value of z
+for(i in c(1:2)
+z[i]<-mean(y,[i,])
+missing the curlies but should be good
+
+apply (data, row(is 1, 2 is columns), function to put)
+other ways to use apply using dataframs sapply and tapply 
+
+
+working with dataset
+hapmaps is genetic variation SNPs for European folks, each row labelled with a location on the chromosome, each column is one individual (60 of them)
+loading data with read.table(filename to read in, header=TRUE means there is a header on it, so want to say true as we have a header) and store the data into variable
+names function returns column names, row.names gives row names
+can convert dataframe to matrix with as.matrix
+computing things for missing data, if computing heterozygosity need to exclude NA's but will still get same length before, 
+function is.NA will test if there is an NA, most will fail as most exists
+so if want total number of samples function length may not let you ignore NA's but instead can use function !is.na (! is for not) and then can sum this to get all the observances of true for !is.na aka all non NA observances
+missing data annoying, must account for it
+
+for points function can use type="l" to make it a line
+for haplo sum(x,na.rm=TRUE)/(2.0*sum(!is.na(x))) gices minor allele frequency
+
+
+Noa Talk in afternoon
+packages-find which ones good, ask around with it
+
+for loops inside for loops
+say have several people over certain years, want for loop nesteed in for loop
+for (i in 1:5) {# on people
+	ix=people[i]
+for(j in in 1:3) { on years
+		; jx=years[j]
+		}
+}
+runs person1 for each year, then person2, then person3
+
+t-test comparing  two samples to show if significant difference between them, ANOVA is same for 3+ samples
+head function shows first six rows
+unique function gives unique values 
+within a function can break a line after a comma and add comments with #, just be sure to add closing parentheses
+r color chart online, when set a color can use a number, name, hexadecimalcolor or RGB
+boxplot vs barplot
+barplot-mean, median plus other summary stats
+box give median as line, 25%quartiles and whiskers as 95% condfidence levels, can change that as needed, also shows outliers
+list can use $ to call or [], list can have lots of things of different lengths, whereas dataframes required to be same length
+aov runs anova, good to store it into variable,
+function summary gives the summary stats for it
+anova tells you if something is different, but need a second test called Turkey test to see which is sig diff from each other
+text() adds text
+on legend can just call topleft, topcenter etc
+lm calls linear model, (ind variabl ~ something)
+adding interaction term to see if each species has different slope, + adds a variable to model,
+for exploratory stuff 
+windows()
+plot(iris, col=cols2, pch=16)
+gives interaction of each things
+
+look at R graph gallery to get ideas on displaying data
+R reference card, download from website, 
+populaiton stuff for 200B etc
+

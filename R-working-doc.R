@@ -53,6 +53,47 @@ for(ii in 1:6){
   }
 }
 #not printing, something else needed
+#works now
 
 help(rnorm)
 
+
+
+
+
+
+#Day2 stuff
+x<-c(1,5,10,45)
+mean(x)
+length(x)
+2*x
+
+x<-seq(1,10, by=0.1)
+sample(x, size=2)
+sample(x[1:3], size=2, replace = T)
+
+seq(1,4, by=0.1)
+x<-c(seq(1,9, by=2))
+x
+x[3]
+x[-2]
+
+
+x<-seq(1,10)
+y=matrix(x,nrow=2,ncol=5)
+y
+y[2,]
+y[,]
+y[2,1]
+
+x=c(5,3,4,NA)
+mean(x)
+mean(x, na.rm=TRUE)
+
+
+apply(y,1,mean)
+apply(y,2,mean)
+
+
+
+#Plotting and Stats Noa Pinter-Wollman stuff
