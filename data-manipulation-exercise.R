@@ -83,11 +83,45 @@ log_exp_pvals<- -log10(exp_pvals)
 
 
 #g want to plot log_sort_pvals, log_exp_pvals, first attempt was inverted y and x, forgot dependent is said first then independent
+#pch changes point style, 20 is closed circle
 windows()
-plot(log_exp_pvals, log_sort_pvals, xlab="-log10(expected P-value)", ylab = "-log(observed P-value)")
+plot(log_exp_pvals, log_sort_pvals, xlab="-log10(expected P-value)", ylab = "-log(observed P-value)", pch=20)
 
 
 #h add a diagonal
-#abline (intercept, slope, c=color, 2 is red)
-abline(0,1, c=2)
-help(abline)
+#abline (intercept, slope, how to change color to red?, col=2, lwd=lineweight, lty= line style)
+abline(0,1, col=2, lty=2, lwd=2)
+#success, changed the graphics to make it more similar 
+
+
+#2
+#a. load file pheno.sim.2014.txt, 
+#store in data frame zz
+#second column has the blood glucose measurement
+#want to use header=T for read.table
+zz<-read.table("pheno.sim.2014.txt", header=T )
+#remember the want to use the $ to pull out the data associated with this column
+
+
+#b. find the value such that 25% of individuals have less than this value
+# mean? that will give proportion, can use quartile?
+#no its the quantile function
+
+quantile(zz$glucose_mmolperL, 0.25, na.rm=T)
+# 25% of individuals have phenotypic value less than 4.78456
+
+
+#c find such that 25% have more than this, aka the 75% quantile
+quantile(zz$glucose_mmolperL, 0.75, na.rm=T)
+# 25% of individuals have phenotype higher than 7.354975
+
+#d want density plot of distribution of phenotypes (blood glucose levels)
+#add vert lines to plot at 75% and 25% use the ablines
+windows()
+plot(density(zz$glucose_mmolperL), xlab="mmolperL",ylab="Percent individuals", main="Blood glucose", col=4, lwd=3)
+#for abline v=x intercept for vertical lines
+abline(v=(quantile(zz$glucose_mmolperL, 0.25)), col=2, lty=2, lwd=1)
+abline(v=(quantile(zz$glucose_mmolperL, 0.75)), col=2, lty=2, lwd=1)
+
+#seems like it works
+
