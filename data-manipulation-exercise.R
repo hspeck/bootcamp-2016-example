@@ -58,3 +58,36 @@ length(pvals)
 #4014 pvalues
 num_pval<-length(pvals)
 
+
+#d you have num_pval total P-values
+#if null is true, smallest P-value expected to be 1/num_pval
+#second is 2/num_pval
+#etc
+#calculate vector of expected P-values for chi-square test
+#save in vector->exp_pvals
+#can try using seq?, will be increments of 1/num_pval, eh, let's go with scalar multiplication
+
+exp_pvals<-c(1:num_pval)*(1/num_pval)
+
+#e observed P-values in pvals vector, need to sort smallest to largest
+help(sort)
+#sort defaults to sorting in ascended order
+sort_pvals<-sort(pvals)
+
+
+#f to see what happening with small pvalues,
+#take -log10(P-value) find for sorted and expected
+help(log10)
+log_sort_pvals<- -log10(sort_pvals)
+log_exp_pvals<- -log10(exp_pvals)
+
+
+#g want to plot log_sort_pvals, log_exp_pvals, first attempt was inverted y and x, forgot dependent is said first then independent
+windows()
+plot(log_exp_pvals, log_sort_pvals, xlab="-log10(expected P-value)", ylab = "-log(observed P-value)")
+
+
+#h add a diagonal
+#abline (intercept, slope, c=color, 2 is red)
+abline(0,1, c=2)
+help(abline)
