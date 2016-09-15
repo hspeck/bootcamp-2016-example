@@ -28,5 +28,11 @@ get_heights<-function(num){
   return(average)
 }
 
+#4
+#need to repeat multiple times with for loop, 
+#so for 1:1000, get_heights()
+#save for each value into a vector mean_heights_100 blah
+#can use rep function to repeat it multiple times
+
 x<-get_heights(100)
 average_heights
