@@ -83,3 +83,142 @@ for(ii in 1:length(years)){
     cat(years[ii], "Hooray, presidential and congressional elections!", sep = '\t', fill=T)
   }
 }
+
+#seems to work
+
+
+#Exercise 5
+bankAccounts <- c(10, 9.2, 5.6, 3.7, 8.8, 0.5);
+compounded<-c(rep(0,length(bankAccounts) ))
+interestRate <- 0.0125;
+for (i in 1:length(bankAccounts)) {
+  compounded[i] <- interestRate*bankAccounts[i] + bankAccounts[i]; }
+#error message this code says "object 'compounded' not found
+#seems to mean we should initialize the compounded vector, and second hint seems to mean making a starting vector of 0
+#seems to have worked
+print(compounded)
+#so this is the new account total for the students in order 10.12500, 9.31500, 5.67000, 3.74625, 8.91000, 0.50625
+
+
+#Exercise 6 
+
+bankAccounts2 <- c(10, 9.2, 5.6); #define bank accounts here
+Netbalance<-c(rep(0,length(bankAccounts2)))
+compounded2<-c(rep(0,length(bankAccounts2)))
+interestRate<- 0.0525
+house<-c(4.8, 3.8, 5.7) #deduct
+food<-c(3.5, 4.3, 5.0)   #deduct
+fun <-c(7.8, 2.1, 10.5) #deduct
+#Let's just make one variable for expenses aka all of the abov summed
+expenses<- house+food+fun
+# expenses is 16.1, 10.2, 21.2, so third TA's growth should be slightly less than compound intrest, or decline somewhat, as they are running a deficit income vs expenses
+#2 should be fastests, as will have biggest net income, 1st somewhere in middle
+
+#and incomes (through TAships) of 
+income <- c(21, 21, 21) #add this
+
+for(j in  1:5) {
+  for (i in 1:length(bankAccounts2)) 
+    {
+    #step 1 modify bankAccounts so that amounts reflect income and expenses
+      #so each year
+        #subtract expenses
+        #add the income
+    Netbalance[i]<-(bankAccounts2[i] -expenses[i] +income[i])
+    #step 2 get calculate interest and add to accounts from step 1
+    Netbalance[i] <- (interestRate +1 )*Netbalance[i]; }
+  print(Netbalance)
+  bankAccounts2<-Netbalance
+    #printing is a check to see if it works
+    #you can actually use the line you have already written if you
+    #modify amounts in bankAccounts directly in step 1
+  #now we need to modify this so that it performs the inner loop
+  #had trouble figuring it out, but relized it was cycling through the loop, just the loop wasn't closed 
+  #to close loop had to assign the compounded2 back to the start to feed through the loop
+}
+
+  
+  
+  
+#Exercise 7
+#expense and income data is same between exercise 7 and 6, so the loop above works ok for that
+#want modify loop above so it runs from 2015-2020
+  #i.e. for j in 2015-2020
+#want on odd numbered years to give students 1 and 3 extra $5000 (aka 5 in the above)
+  #odd numbers can be achieved with modulus
+  #aka if j %% 2 == 1 the year is odd
+  #in this case can add a vector at the end of the year disbursment<-c(5,0,5) to the compounded2 vector
+
+#Define variables
+bankAccounts3 <- c(10, 9.2, 5.6); 
+Netbalance<-c(rep(0,length(bankAccounts3)))
+compounded3<-c(rep(0,length(bankAccounts3)))
+interestRate<- 0.0525
+house<-c(4.8, 3.8, 5.7) 
+food<-c(3.5, 4.3, 5.0)  
+fun <-c(7.8, 2.1, 10.5) 
+expenses<- house+food+fun
+income <- c(21, 21, 21)
+disbursments<-c(5,0,5)
+
+for(j in  2015:2020) {
+  for (i in 1:length(bankAccounts3)) {
+    Netbalance[i]<-(bankAccounts3[i] -expenses[i] +income[i])
+ if (j %% 2 == 1) {
+    Netbalance<-Netbalance+disbursments
+  }
+    compounded3[i] <- (interestRate +1 )*Netbalance[i]; }
+  bankAccounts3<-compounded3
+  print(bankAccounts3)
+  print(j)
+}
+#comparing this to the above shows that for 2015 there is a roughly 5k+intrest increase for students 1 and 3 and can see the 5kish increases on year 2017/2019 by lookin at 3 which has little growth from interest
+
+
+#Exercise 8
+#use while loop to sum all numbers 1:17
+#need to use an index as seen in class
+#basic structure of while loop
+  #while (some condition is True) {thing to do}
+  #what condition?
+  #can do two variables, one to track, one to calculate
+  #==!18? that might work ok, but not general
+  #how about while tracker variable<18 tracker+1 and add the new tracker to the calculator
+  #should actually only do till tracker<17 as it will become 17 in the function when they add it when it goes through as 16
+
+
+tracker<-0
+calculator<-0
+while(tracker<17){
+  tracker<-tracker+1
+  calculator<-calculator+tracker
+}
+print(calculator)
+#gives same result as sum(1:17)
+
+
+
+#Exercise 9
+#write a function that takes a number
+#prints "small" if lessthan or equla to -1,
+#prints "medium" if betwen -1 and +1
+#prints "big" if greater than or equal to +1
+#using else if statements to state that
+
+sizeteller <-function(x){
+  if (x<= (-1)){
+    print("small")
+  }
+  else if (x>=1){
+    print("big")
+  }
+  else{
+    print("medium")
+  }
+}
+#testing the three cases
+sizeteller(-2)
+sizeteller(0)
+sizeteller(4)
+#works out
+sizeteller(0.5)
